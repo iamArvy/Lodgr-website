@@ -1,0 +1,18 @@
+
+import prop1 from '@/assets/images/properties/1.png'
+import prop2 from '@/assets/images/properties/2.png'
+import prop3 from '@/assets/images/properties/3.png'
+import prop4 from '@/assets/images/properties/4.png'
+import prop5 from '@/assets/images/properties/5.png'
+import prop6 from '@/assets/images/properties/6.png'
+import prop7 from '@/assets/images/properties/7.png'
+import prop8 from '@/assets/images/properties/8.png'
+import prop9 from '@/assets/images/properties/9.png'
+import prop10 from '@/assets/images/properties/10.png'
+import prop11 from '@/assets/images/properties/11.png'
+import prop12 from '@/assets/images/properties/12.png'
+import prop13 from '@/assets/images/properties/13.png'
+import prop14 from '@/assets/images/properties/14.png'
+import prop15 from '@/assets/images/properties/15.png'
+import prop16 from '@/assets/images/properties/16.png'
+export const images = [prop1, prop2, prop3, prop4, prop5, prop6, prop7, prop8, prop9, prop10, prop11, prop12, prop13, prop14, prop15, prop16]

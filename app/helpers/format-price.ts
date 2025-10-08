@@ -1,0 +1,1 @@
+export const formatPrice = (amount: number) => '₦' + new Intl.NumberFormat("en-US").format(amount)
