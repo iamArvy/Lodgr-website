@@ -12,24 +12,25 @@ const { push } = useRouter();
 <template>
   <div class="select-none space-y-3" @click="push({ name: 'home-id', params: { id } })">
     <Gallery :gallery="gallery" />
-    <div>
+    <div class="px-1">
       <h3 class="font-bold w-1/1 truncate">{{ name }}</h3>
-      <p>{{ location }}</p>
+      <p class="text-sm w-1/1 truncate">{{ location }}</p>
 
-      <div class="flex items-center gap-1 ">
-        <Icon name="lucide:star" class="inline-block text-primary" size="16" /> {{ rating }} ({{ reviewsCount }})
+      <div class="flex items-center gap-1 text-sm ">
+        <Icon name="material-symbols:star" class="inline-block text-secondary" size="16" /> {{ rating }} ({{
+          reviewsCount }})
       </div>
-    </div>
-    <div class="flex items-center justify-between">
-      <div class="flex items-center gap-1">
-        <span v-for="{ icon, value } in items" class="text-sm font-medium flex items-center gap-1">
-          <Icon :name="icon" class="inline-block mx-1" size="16" /> {{ value }}
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-1">
+          <span v-for="{ icon, value } in items" class="text-sm font-medium flex items-center gap-1">
+            <Icon :name="icon" class="inline-block mx-1" size="16" /> {{ value }}
+          </span>
+        </div>
+        <span class="font-bold text-lg">
+          {{ formatPrice(price) }}<span class="text-sm font-medium ">
+          </span>
         </span>
       </div>
-      <span class="font-bold text-lg">
-        {{ formatPrice(price) }}<span class="text-sm font-medium ">/{{ frequency }}
-        </span>
-      </span>
     </div>
   </div>
 </template>

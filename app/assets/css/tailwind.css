@@ -48,7 +48,7 @@
   --font-code: "Source Code Pro", monospace;
 
   /* Background */
-  --background-image-hero: url("@/assets/images/hero-bg.jpg");
+  --background-image-hero: var(--gradient-hero), url("@/assets/images/hero-bg.jpg");
 
   /* Animation */
   --animate-accordion-down: accordion-down 0.2s ease-out;
@@ -137,7 +137,7 @@
   --footer-foreground: hsl(0, 0%, 79%);
 
   /* Gradients */
-  --gradient-hero: linear-gradient(135deg, hsl(173 80% 40%), hsl(173 70% 50%));
+  --gradient-hero: linear-gradient(135deg, hsl(173 80% 40% / 0.6), hsl(173 70% 50% / 0.2));
   --gradient-card: linear-gradient(to bottom, hsl(0 0% 100%), hsl(210 40% 98%));
 
 

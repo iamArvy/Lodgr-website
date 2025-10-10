@@ -11,13 +11,15 @@ const plugins = [
     loop: false,
   }" :plugins="plugins" class="relative group">
     <div
-      class=" absolute z-5 w-full top-1/2 -translate-y-1/2 hidden md:group-hover:flex items-center justify-between px-2 transition-all ease-in-out duration-500">
+      class=" absolute z-5 w-full top-1/2 -translate-y-1/2 hidden md:group-hover:flex items-center justify-between px-2 transition-all ease-in-out duration-700">
       <CarouselPrevious />
       <CarouselNext />
     </div>
     <CarouselContent>
       <CarouselItem v-for="image in gallery" :key="image">
-        <img :src="image" alt="" width="400" height="300" class="rounded-lg">
+        <figure class="overflow-hidden rounded-lg aspect-video">
+          <img :src="image" alt="" class="w-full object-cover">
+        </figure>
       </CarouselItem>
     </CarouselContent>
   </Carousel>
