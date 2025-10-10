@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { formatPrice } from '~/helpers/format-price';
 import type { PropertySidebarProps } from '~/interfaces/property';
 const props = defineProps<PropertySidebarProps>();
 const items = [
@@ -12,7 +13,7 @@ const items = [
       <CardContent class="space-y-6">
         <div>
           <p class="text-sm text-muted-foreground mb-1">Price</p>
-          <p class="text-3xl font-bold text-primary">{{ price }}</p>
+          <p class="text-3xl font-bold text-primary">{{ formatPrice(price) }}</p>
           <p class="text-sm text-muted-foreground">per {{ frequency }}</p>
         </div>
 
