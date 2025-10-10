@@ -4,7 +4,7 @@ import * as z from 'zod'
 
 export const useLeaseForm = (propertyId: string) => {
 
-const { user } = useAuth()
+const { user } = useUserSession()
 const { success } = useToast()
 const formSchema = toTypedSchema(z.object({
   paymentPlan: z.uuid(),

@@ -32,7 +32,7 @@ export const amenities = [
   {
     id: 'restaurant',
     name: 'Restaurant',
-    icon: 'lucide:restaurant'
+    icon: 'lucide:cooking-pot'
   },
   {
     id: 'bar',
