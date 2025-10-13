@@ -1,8 +1,9 @@
 <script setup lang="ts">
 const { submit } = useLoginForm()
+setPageLayout('auth')
 </script>
 <template>
-  <form @submit.prevent="submit" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <form @submit.prevent="submit" class="space-y-6">
     <FormField name="email" v-slot="{ componentField }">
       <FormItem>
         <FormLabel>Email*</FormLabel>
@@ -19,10 +20,14 @@ const { submit } = useLoginForm()
         <FormControl>
           <Input v-bind="componentField" type="password" placeholder="Password" />
         </FormControl>
-        <FormDescription />
+        <FormDescription>
+          This is a demo application, password is "securePassword"
+        </FormDescription>
         <FormMessage />
       </FormItem>
     </FormField>
-    <Button type="submit">Save Changes</Button>
+    <div>
+      <Button class="w-full" type="submit">Login</Button>
+    </div>
   </form>
 </template>
