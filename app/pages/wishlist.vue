@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { generateProperties } from '~/mocks';
-
 useAppTitle('Wishlist');
 definePageMeta({
   middleware: ['auth'],
@@ -13,8 +12,9 @@ const wishlist = generateProperties(10);
 </script>
 <template>
   <main class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <ExplorerCard v-for="item in wishlist" :key="item.id" v-bind="item" />
+    <h1 class="text-xl md:text-3xl font-bold">Wishlist</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+      <PropertyListItem v-for="property in wishlist" :key="property.id" v-bind="property" />
     </div>
   </main>
 </template>
