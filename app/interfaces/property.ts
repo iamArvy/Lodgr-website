@@ -12,6 +12,7 @@ export interface PropertyAgent {
 }
 export interface Property {
   id: string;
+  image: string;
   gallery: string[];
   name: string;
   description?: string;

@@ -4,3 +4,4 @@ export * from './property-types';
 export * from './payment';
 export * from './user';
 export * from './document';
+export * from './payment-plan';

@@ -10,9 +10,9 @@ const items = [
 </script>
 
 <template>
-  <div class="select-none space-y-2 cursor-pointer mb-2" @click="navigateTo({ name: 'homes-id', params: { id } })">
+  <div class="select-none space-y-2 cursor-pointer mb-2" @click="navigateTo({ name: 'properties-id', params: { id } })">
     <figure class="overflow-hidden rounded-lg aspect-video">
-      <img :src="gallery[0]" alt=""
+      <img :src="image" alt=""
         class="w-full object-cover hover:scale-105 transition-transform duration-300 ease-in-out rounded-lg" />
     </figure>
     <div class="text-sm space-y-1 px-1">

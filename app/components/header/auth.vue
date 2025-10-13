@@ -14,7 +14,6 @@ const profileNavs = [
   <DropdownMenu v-if="user">
     <DropdownMenuTrigger>
       <Avatar class="w-12 h-12">
-        <AvatarImage v-if="user.avatarUrl" :src="user.avatarUrl" :alt="user.firstName + ' ' + user.lastName" />
         <AvatarFallback class="font-bold text-sm">
           {{ user.firstName.charAt(0) + user.lastName.charAt(0) }}
         </AvatarFallback>

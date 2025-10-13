@@ -11,7 +11,7 @@ const generateUser = (email: string) => {
     firstName: faker.person.lastName(),
     lastName: faker.person.firstName(),
     email,
-    phone: faker.phone.number({style: "international"}),
+    phone: faker.phone.number({style: "human"}),
     createdAt: faker.date.past().toISOString(),
   }
 }

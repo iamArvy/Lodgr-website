@@ -1,31 +1,47 @@
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
+import { paymentPlans } from '~/mocks'
 
 export const useLeaseForm = (propertyId: string) => {
 
 const { user } = useUserSession()
-const { success } = useToast()
+const { success, error, info } = useToast()
 const formSchema = toTypedSchema(z.object({
   paymentPlan: z.uuid(),
-  useProfile: z.boolean(),
   participant: z.object({
     firstName: z.string(),
     lastName: z.string(),
     phone: z.string(),
     email: z.string()
-  }).optional(),
+  }),
 }))
 
 const { handleSubmit, values } = useForm({
   validationSchema: formSchema,
   initialValues: {
-    useProfile: true,
+    participant: {
+      firstName: user.value?.firstName,
+      lastName: user.value?.lastName,
+      phone: user.value?.phone,
+      email: user.value?.email
+    }
   }
 })
 
-const submit = handleSubmit((values) => {
-  success('Profile updated successfully!')
+
+const submit = handleSubmit( async (values) => {
+  const email = values.participant.email
+  const amount = paymentPlans.find((plan) => plan.id === values.paymentPlan)?.price ?? 0
+  const reference = crypto.randomUUID()
+  const payment = await usePaystack(email, amount, reference)
+  if (payment.success) {
+    success('Payment success!')
+  } else if (payment.cancelled) {
+    info('Payment unsuccessful')
+  } else if (payment.error) {
+    error('Payment cancelled')
+  }
 })
 
 return {
