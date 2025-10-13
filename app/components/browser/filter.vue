@@ -19,7 +19,7 @@ const { applyFilters, filters, toggleAmenity } = useBrowser()
         Apply Filters
       </Button>
     </SheetTrigger>
-    <SheetContent>
+    <SheetContent class="w-full">
       <SheetHeader>
         <SheetTitle>Page Filters</SheetTitle>
       </SheetHeader>

@@ -56,7 +56,7 @@ const inFavourites = ref(false);
           <Icon :name="icon" class="inline-block text-primary" size="20" /> {{ value }}
         </p>
         <div class="flex gap-1">
-          <Button @click="navigateTo({ name: 'homes-id-book', params: { id: property.id } })">
+          <Button @click="navigateTo({ name: 'properties-id-book', params: { id: property.id } })">
             Book Now
           </Button>
           <Button>
