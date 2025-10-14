@@ -44,7 +44,7 @@ const inFavourites = ref(false);
     <section class="lg:grid grid-cols-3 gap-3 space-y-4">
       <div class="relative ">
         <PropertyGallery :gallery="property.gallery" />
-        <Button class="absolute top-2 right-2 flex items-center gap-1" variant="outline" size="icon"
+        <Button class="absolute top-2 right-2 flex items-center gap-1" variant="favourite" size="icon"
           @click="inFavourites = !inFavourites">
           <Icon :name="inFavourites ? 'material-symbols:favorite-rounded' : 'material-symbols:favorite-outline-rounded'"
             size=" 20" class="text-primary" />

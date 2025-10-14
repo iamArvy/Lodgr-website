@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { generateProperties } from '~/mocks';
-const properties = generateProperties(20);
+import { mockBrowser } from '~/mocks';
+const { filters } = useBrowser()
+const properties = mockBrowser(filters.value)
 </script>
 <template>
   <main class="container mx-auto space-y-6">

@@ -10,34 +10,41 @@ const items = [
 </script>
 
 <template>
-  <div class="select-none space-y-2 cursor-pointer mb-2" @click="navigateTo({ name: 'properties-id', params: { id } })">
-    <figure class="overflow-hidden rounded-lg aspect-video">
-      <img :src="image" alt=""
-        class="w-full object-cover hover:scale-105 transition-transform duration-300 ease-in-out rounded-lg" />
-    </figure>
-    <div class="text-sm space-y-1 px-1">
-      <div class="">
-        <h3 class="font-bold w-4/4 truncate">{{ name }}</h3>
-        <p class="w-4/4 truncate text-xs ">{{ location }}</p>
-      </div>
-      <p class="flex items-center gap-0.5 text-xs">
-        <span class="flex items-center">
-          <Icon v-for="n in Math.floor(rating)" :key="n" name="material-symbols:star"
-            class="inline-block text-secondary" size="14" />
-          ({{ reviewsCount }})
-        </span>
-      </p>
-      <hr>
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-1">
-          <span v-for="{ icon, value } in items" class="text-xs font-medium flex items-center gap-0.5">
-            <Icon :name="icon" class="inline-block mx-1" size="14" /> {{ value }}
+  <div class="relative">
+    <div class="select-none space-y-2 cursor-pointer mb-2"
+      @click="navigateTo({ name: 'properties-id', params: { id } })">
+      <figure class="overflow-hidden rounded-lg aspect-video">
+        <img :src="image" alt=""
+          class="w-full object-cover hover:scale-105 transition-transform duration-300 ease-in-out rounded-lg" />
+      </figure>
+      <div class="text-sm space-y-1 px-1">
+        <div class="">
+          <h3 class="font-bold w-4/4 truncate">{{ name }}</h3>
+          <p class="w-4/4 truncate text-xs ">{{ location }}</p>
+        </div>
+        <p class="flex items-center gap-0.5 text-xs">
+          <span class="flex items-center">
+            <Icon v-for="n in Math.floor(rating)" :key="n" name="material-symbols:star"
+              class="inline-block text-secondary" size="14" />
+            ({{ reviewsCount }})
+          </span>
+        </p>
+        <hr>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-1">
+            <span v-for="{ icon, value } in items" class="text-xs font-medium flex items-center gap-0.5">
+              <Icon :name="icon" class="inline-block mx-1" size="14" /> {{ value }}
+            </span>
+          </div>
+          <span class="font-bold">
+            {{ formatPrice(price) }}
           </span>
         </div>
-        <span class="font-bold">
-          {{ formatPrice(price) }}
-        </span>
       </div>
     </div>
+    <Button class="absolute top-1 right-2" variant="favourite" size="icon">
+      <Icon :name="inFavourites ? 'material-symbols:favorite-rounded' : 'material-symbols:favorite-outline-rounded'"
+        size=" 17" class="text-primary" />
+    </Button>
   </div>
 </template>

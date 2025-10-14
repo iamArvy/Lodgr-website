@@ -1,8 +1,10 @@
-import type { Amenity } from "~/interfaces";
+import type { Amenity, Property } from "~/interfaces";
 import { amenities } from "./amenities";
 import { images } from "./images";
 
 import { faker } from '@faker-js/faker'
+import { states } from "~/constants/browser";
+import type { PropertyFilter } from "~/interfaces/property/filters";
 
 const description = `
     <p>
@@ -55,22 +57,23 @@ function sample<T>(arr: T[], count: number): T[] {
   return shuffle(arr).slice(0, count)
 }
 
-export function generateProperty() {
+
+export function generateProperty(data?: Partial<Property>) {
   return {
-    id: faker.string.uuid(), // or faker.string.nanoid() if you want shorter IDs
-    image: faker.helpers.arrayElement(images),
+    id: data?.id || faker.string.uuid(),
+    image: data?.image || faker.helpers.arrayElement(images),
     gallery: sample(images, faker.number.int({ min: 3, max: 6 })),
-    name: faker.location.city() + ' ' + faker.word.noun(), // e.g., "Lisbon Villa"
+    name: faker.location.city() + ' ' + faker.word.noun(),
     description,
-    location: `${faker.location.city()}, ${faker.location.country()}`,
-    rating: Number(faker.number.float({ min: 3.5, max: 5, fractionDigits:1 }).toFixed(1)),
-    reviewsCount: faker.number.int({ min: 20, max: 1000 }),
-    price: faker.number.int({ min: 350000, max: 2000000 }),
-    frequency: faker.helpers.arrayElement(['month', 'year']) as "month" | "year",
-    rooms: faker.number.int({ min: 1, max: 8 }),
-    baths: faker.number.int({ min: 1, max: 5 }),
-    amenities: sample(amenities, faker.number.int({ min: 3, max: amenities.length })) as Amenity[],
-    details: [
+    location: ( states.find(state => state.slug === data?.location)?.name || states[faker.number.int({ min: 0, max: states.length - 1 })]?.name) + ', Nigeria',
+    rating: data?.rating || Number(faker.number.float({ min: 3.5, max: 5, fractionDigits:1 }).toFixed(1)),
+    reviewsCount: data?.rating || faker.number.int({ min: 20, max: 1000 }),
+    price: data?.price || faker.number.int({ min: 350000, max: 2000000 }),
+    frequency: data?.frequency || faker.helpers.arrayElement(['month', 'year']) as "month" | "year",
+    rooms: data?.rooms || faker.number.int({ min: 1, max: 8 }),
+    baths: data?.baths || faker.number.int({ min: 1, max: 5 }),
+    amenities: data?.amenities || sample(amenities, faker.number.int({ min: 3, max: amenities.length })) as Amenity[],
+    details: data?.details || [
       { label: "Size", value: "120 sqm" },
       { label: "Furnishing", value: "Semi-furnished" },
       { label: "Floor", value: "2nd Floor" },
@@ -81,76 +84,30 @@ export function generateProperty() {
       email: faker.internet.email(),
       name: faker.person.fullName(),
     },
-    createdAt: faker.date.past().toISOString(),
+    inFavourites: data?.inFavourites || faker.datatype.boolean(),
+    createdAt: data?.createdAt || faker.date.past().toISOString(),
   }
 }
 
-// Generate a list of fake properties
-export function generateProperties(count: number = 10) {
-  return Array.from({ length: count }, () => generateProperty())
+export function generateProperties(count: number = 10, data?: Partial<Property>) {
+  return Array.from({ length: count }, () => generateProperty(data))
 }
-
-// Example export
-export const properties = generateProperties(20)
-
-// Random int helper
-// function randomInt(min: number, max: number): number {
-//   return Math.floor(Math.random() * (max - min + 1)) + min;
-// }
-
-// // Generate a random image
-// export function getRandomImage(): string {
-//   const index = randomInt(0, images.length - 1);
-//   return images[index]!;
-// }
-
-// export function getRandomGallery(count: number = 6): string[] {
-//   return shuffle(images).slice(0, count);
-// }
-
-// export function getRandomCuid(length: number = 12): string {
-//   const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-//   let id = 'c';
-//   for (let i = 0; i < length; i++) {
-//     id += chars.charAt(Math.floor(Math.random() * chars.length));
-//   }
-//   return id;
-// }
-
-// export function getRandomAmenities(): Amenity[] {
-//   return shuffle(amenities).slice(0, randomInt(1, amenities.length));
-// }
-
-// Mock property data
-// export const properties = [{
-//   id: getRandomCuid(),
-//   image: getRandomImage(),
-//   gallery: getRandomGallery(5),
-//   name: 'Beachfront Villa in Costa del Sol',
-//   description,
-//   location: 'Costa del Sol, Spain',
-//   rating: 4.9,
-//   reviewsCount: 300,
-//   price: 700,
-//   rooms: 5,
-//   baths: 4,
-//   guests: 10,
-//   amenities: getRandomAmenities(),
-//   createdAt: '2024-01-05T00:00:00Z',
-// }
-// ]
 
 export const homePageProperties = [
   {
-    label: 'Top Picks in Dubai',
-    properties: generateProperties(20),
+    label: 'Flats in Lagos',
+    properties: generateProperties(20, { location: 'lagos'}),
   },
   {
-    label: 'New in London',
-    properties: generateProperties(20),
+    label: 'New Bungalows in Port-harcourt',
+    properties: generateProperties(20, { location: 'port-harcourt'}),
   },
   {
-    label: 'VIlla in Spain',
-    properties: generateProperties(20),
+    label: 'Hostels in Abuja',
+    properties: generateProperties(20, { location: 'abuja'}),
   }
 ]
+
+export const mockBrowser = (filters: PropertyFilter) => {
+  return  generateProperties(20, { location: filters.location });
+}

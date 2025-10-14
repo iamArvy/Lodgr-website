@@ -7,7 +7,7 @@ definePageMeta({
 })
 
 
-const wishlist = generateProperties(10);
+const wishlist = generateProperties(10, { inFavourites: true });
 
 </script>
 <template>

@@ -25,6 +25,7 @@ export interface Property {
   baths: number;
   amenities: Amenity[];
   details: PropertyDetails[];
+  inFavourites: boolean;
   createdAt: string;
 }
 
