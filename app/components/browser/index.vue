@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { mockBrowser } from '~/mocks';
 const { filters } = useBrowser()
-// const properties = mockBrowser(filters.value)
-const { data: properties } = useFetch('/api/properties')
+const { data: properties } = useFetch('/api/properties', {
+  query: filters.value,
+})
 </script>
 <template>
   <main class="container mx-auto space-y-6">

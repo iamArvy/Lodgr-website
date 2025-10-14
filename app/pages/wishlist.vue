@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { generateProperties } from '~/mocks';
 useAppTitle('Wishlist');
 definePageMeta({
   middleware: ['auth'],
 })
-const wishlist = generateProperties(10, { inFavourites: true });
-
+const { data: wishlist } = useFetch('/api/wishlist')
 </script>
 <template>
   <main class="container mx-auto px-4">
