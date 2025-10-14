@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { homePageProperties } from '~/mocks';
 useAppTitle("Home")
 import { hero } from '~/constants/home'
 const { title, subtitle } = hero;
+const { data: response } = useFetch('/api/homepage')
 </script>
 <template>
   <main>
@@ -14,7 +14,7 @@ const { title, subtitle } = hero;
         <Button @click="navigateTo('/browse')" variant="secondary" size="lg"> Start Browsing </Button>
       </div>
     </section>
-    <section v-for="{ label, properties } in homePageProperties" class="container mx-auto my-8">
+    <section v-for="{ label, properties } in response?.sections" class="container mx-auto my-8">
       <Carousel :opts="{
         align: 'start',
         loop: false,

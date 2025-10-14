@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { mockBrowser } from '~/mocks';
 const { filters } = useBrowser()
-const properties = mockBrowser(filters.value)
+// const properties = mockBrowser(filters.value)
+const { data: properties } = useFetch('/api/properties')
 </script>
 <template>
   <main class="container mx-auto space-y-6">
@@ -12,7 +13,8 @@ const properties = mockBrowser(filters.value)
       <BrowserFilter />
     </section>
     <section class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 col-span-2">
-      <PropertyListItem v-for="property in properties" :key="property.id" v-bind="property" />
+      <PropertyListItem v-if="properties" v-for="property in properties.properties" :key="property.id"
+        v-bind="property" />
     </section>
   </main>
 </template>

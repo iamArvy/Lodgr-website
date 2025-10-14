@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { states } from '~/constants/browser'
 import { useBrowser } from '~/composables/useBrowser'
-import { mockPropertyTypes } from '~/mocks/property-types'
-import { amenities } from '~/mocks/amenities'
+import { mockPropertyTypes } from '~~/server/utils/mocks/property-types'
+import { amenities } from '~~/server/utils/mocks/amenities'
 import { Filter } from 'lucide-vue-next'
 
 const { applyFilters, filters, toggleAmenity } = useBrowser()

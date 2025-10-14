@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { formatPrice } from '~/helpers/format-price';
 import type { PaymentPlan } from '~/interfaces';
-defineProps<{ plans: PaymentPlan[] }>()
+const props = defineProps<{ plans: PaymentPlan[], price: number }>()
+function planPrice(duration: number, discount?: number) {
+  const planPrice = props.price * duration;
+  if (discount) {
+    return Math.round(planPrice * (1 - discount / 100));
+  }
+  return planPrice
+}
 </script>
 
 <template>
@@ -15,7 +22,7 @@ defineProps<{ plans: PaymentPlan[] }>()
           <FormItem>
             <FormControl>
               <RadioGroup v-bind="componentField" class="space-y-3">
-                <div v-for="{ id, label, description, price } in plans" :key="id"
+                <div v-for="{ id, label, discount, duration } in plans" :key="id"
                   class="flex items-center justify-between p-4 border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors">
                   <div class="flex items-center space-x-3 w-full">
                     <RadioGroupItem :value="id" />
@@ -23,11 +30,11 @@ defineProps<{ plans: PaymentPlan[] }>()
                       class="cursor-pointer flex flex-col sm:flex-row sm:justify-between  items-start flex-1">
                       <div class="flex flex-col space-y-1">
                         <p class="font-semibold">{{ label }}</p>
-                        <p class="text-sm text-muted-foreground">
-                          {{ description }}
+                        <p v-if="discount" class="text-sm text-muted-foreground">
+                          {{ discount }}% discount
                         </p>
                       </div>
-                      <p class="font-bold text-lg">{{ formatPrice(price) }}</p>
+                      <p class="font-bold text-lg">{{ formatPrice(planPrice(duration, discount)) }}</p>
                     </Label>
                   </div>
                 </div>

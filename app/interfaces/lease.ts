@@ -1,18 +1,14 @@
+import type { PaymentPlan } from "./payment-plan";
+import type { Property } from "./property";
+
 export interface Lease {
   id: string;
-  dueDate: Date;
+  dueDate?: Date;
+  endDate?: Date;
   status: "active" | "expired" | "ended";
   price: number;
-  property: {
-    id: string;
-    name: string;
-    location: string;
-  },
-  frequency: {
-    id: string;
-    name: string;
-  },
-  createdAt: string;
+  property: Property,
+  paymentPlan: PaymentPlan
 }
 
 export interface LeaseFrequency {

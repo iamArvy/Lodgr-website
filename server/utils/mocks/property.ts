@@ -93,20 +93,7 @@ export function generateProperties(count: number = 10, data?: Partial<Property>)
   return Array.from({ length: count }, () => generateProperty(data))
 }
 
-export const homePageProperties = [
-  {
-    label: 'Flats in Lagos',
-    properties: generateProperties(20, { location: 'lagos'}),
-  },
-  {
-    label: 'New Bungalows in Port-harcourt',
-    properties: generateProperties(20, { location: 'port-harcourt'}),
-  },
-  {
-    label: 'Hostels in Abuja',
-    properties: generateProperties(20, { location: 'abuja'}),
-  }
-]
+
 
 export const mockBrowser = (filters: PropertyFilter) => {
   return  generateProperties(20, { location: filters.location });

@@ -42,7 +42,7 @@ const items = [
         </div>
       </div>
     </div>
-    <Button class="absolute top-1 right-2" variant="favourite" size="icon">
+    <Button class="absolute top-1 right-2" variant="favourite" size="icon" @click="inFavourites = !inFavourites">
       <Icon :name="inFavourites ? 'material-symbols:favorite-rounded' : 'material-symbols:favorite-outline-rounded'"
         size=" 17" class="text-primary" />
     </Button>
