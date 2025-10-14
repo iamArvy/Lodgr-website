@@ -1,6 +1,3 @@
-import { Lease } from '~/interfaces/lease'
-import { generateLeases } from '~~/server/utils/mocks/lease'
-
 export default defineEventHandler((event) => {
   const query = getQuery(event)
   const status = query.status as string

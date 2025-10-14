@@ -5,3 +5,4 @@ export * from './payment';
 export * from './user';
 export * from './document';
 export * from './payment-plan';
+export * from './property/filters'

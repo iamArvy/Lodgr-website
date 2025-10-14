@@ -1,22 +1,8 @@
 <script setup lang="ts">
-import { MapPin } from 'lucide-vue-next';
-import { formatPrice } from '~/helpers/format-price';
-import { generateProperty } from '~/mocks';
-const property = generateProperty();
-const { name, location, rating, reviewsCount, baths, rooms, price } = property;
-const infoItems = [
-  {
-    icon: "material-symbols:bed",
-    label: "Bedrooms",
-    value: rooms
-  },
-  {
-    icon: "material-symbols:bathtub",
-    label: "Bathrooms",
-    value: baths
-  }
-]
-
+const { params } = useRoute()
+const { data } = await useFetch(`/api/properties/${params.id}`);
+const property = data.value?.property
+const { name, location, rating, reviewsCount, baths, rooms, price } = property ? property : {};
 const headDetails = [
   {
     icon: "lucide:map-pin",
@@ -40,7 +26,7 @@ const inFavourites = ref(false);
 
 </script>
 <template>
-  <main class="space-y-5 container mx-auto">
+  <main class="space-y-5 container mx-auto" v-if="property">
     <section class="lg:grid grid-cols-3 gap-3 space-y-4">
       <div class="relative ">
         <PropertyGallery :gallery="property.gallery" />

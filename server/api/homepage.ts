@@ -1,5 +1,3 @@
-import { generateProperties } from "~~/server/utils/mocks"
-
 export default defineEventHandler(() => {
   const sections = [
     {

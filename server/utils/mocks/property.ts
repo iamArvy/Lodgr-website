@@ -1,10 +1,8 @@
-import type { Amenity, Property } from "~/interfaces";
+import type { Amenity, Property, PropertyFilter } from "~/interfaces";
 import { amenities } from "./amenities";
 import { images } from "./images";
-
 import { faker } from '@faker-js/faker'
 import { states } from "~/constants/browser";
-import type { PropertyFilter } from "~/interfaces/property/filters";
 
 const description = `
     <p>

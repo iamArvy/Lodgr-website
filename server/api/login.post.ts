@@ -19,8 +19,6 @@ export default defineEventHandler(async (event) => {
   const { email, password } = await readValidatedBody(event, bodySchema.parse)
 
   if (password === 'securePassword') {
-    // set the user session in the cookie
-    // this server util is auto-imported by the auth-utils module
     const user = generateUser(email)
     await setUserSession(event, {
       user,

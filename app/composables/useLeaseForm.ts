@@ -1,7 +1,6 @@
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
-import { paymentPlans } from '~/mocks'
 
 export const useLeaseForm = (propertyId: string) => {
 
@@ -32,7 +31,7 @@ const { handleSubmit, values } = useForm({
 
 const submit = handleSubmit( async (values) => {
   const email = values.participant.email
-  const amount = paymentPlans.find((plan) => plan.id === values.paymentPlan)?.price ?? 0
+  const amount = 1000000
   const reference = crypto.randomUUID()
   const payment = await usePaystack(email, amount, reference)
   if (payment.success) {

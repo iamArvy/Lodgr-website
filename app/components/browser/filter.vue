@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { states } from '~/constants/browser'
 import { useBrowser } from '~/composables/useBrowser'
-import { mockPropertyTypes } from '~~/server/utils/mocks/property-types'
-import { amenities } from '~~/server/utils/mocks/amenities'
 import { Filter } from 'lucide-vue-next'
 
 const { applyFilters, filters, toggleAmenity } = useBrowser()
-
+const { data: amenities } = useFetch('/api/amenities')
+const { data: states } = useFetch('/api/states')
+const { data: types } = useFetch('/api/property-types')
 // Reactive slider states
 
 </script>
@@ -45,7 +44,7 @@ const { applyFilters, filters, toggleAmenity } = useBrowser()
               <SelectValue placeholder="Select type" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem v-for="{ slug, name } in mockPropertyTypes" :key="slug" :value="slug">
+              <SelectItem v-for="{ slug, name } in types" :key="slug" :value="slug">
                 {{ name }}
               </SelectItem>
             </SelectContent>
