@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { formatDate } from '@vueuse/core';
-import { Calendar, Eye, MapPin, RefreshCw, Wallet } from 'lucide-vue-next';
+import { Calendar, Eye, MapPin, RefreshCw, Wallet, X } from 'lucide-vue-next';
 import { formatPrice } from '~/helpers/format-price';
 import type { Lease } from '~/interfaces/lease';
 
@@ -10,7 +10,7 @@ const { data: leases } = await useFetch<Lease[]>('/api/leases', {
 })
 </script>
 <template>
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
     <Card v-for="{ id, property, status, price, paymentPlan, dueDate, endDate } in leases"
       class="overflow-hidden transition-all duration-200 hover:shadow-md py-0">
       <div class="aspect-video w-full overflow-hidden">
@@ -54,14 +54,20 @@ const { data: leases } = await useFetch<Lease[]>('/api/leases', {
           </div>
         </div>
 
-        <div class="flex gap-2 pt-2">
+        <Button v-if="status === 'ended'" class="w-full"
+          @click="navigateTo({ name: 'properties-id', params: { id: property.id } })">
+          <Eye class="h-3 w-3" />
+          View Details
+        </Button>
+        <div class="flex gap-2 pt-2" v-else>
           <Button size="sm" class="flex-1 gap-1" @click="">
             <RefreshCw class="h-3 w-3" />
             Renew
           </Button>
-          <Button size="sm" variant="outline" class="gap-1" @click="navigateTo({ name: 'leases-id', params: { id } })">
-            <Eye class="h-3 w-3" />
-            Details
+          <Button size="sm" variant="destructive" class="gap-1"
+            @click="navigateTo({ name: 'leases-id', params: { id } })">
+            <X class="h-3 w-3" />
+            End Lease
           </Button>
         </div>
       </CardContent>

@@ -1,18 +1,4 @@
 <script setup lang="ts">
-// import { CheckCircle, PlayCircle, RefreshCw } from 'lucide-vue-next';
-// import type { PaymentPlan, Property } from '~/interfaces';
-// import { generateLeases } from '~/mocks/lease';
-
-// const tabList = [
-//   { name: "Ongoing", icon: PlayCircle, value: "ongoing" },
-//   { name: "Ended", icon: CheckCircle, value: "ended" },
-// ];
-// useAppTitle("Leases");
-// definePageMeta({
-//   middleware: ['auth'],
-// })
-// const ongoingLeases = generateLeases(5)
-
 import { CheckCircle, Filter, PlayCircle } from 'lucide-vue-next'
 
 useAppTitle('Leases')
